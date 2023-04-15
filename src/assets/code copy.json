@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "name": "implement book class",
+    "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Book\n{\nprivate:\n  string bookName;\n  string authorName;\n  int noOfPages;\n\npublic:\n  void enterBookDetails()\n  {\n    cout << \"enter the book name:\";\n    cin >> bookName;\n    cout << \"enter the author name:\";\n    cin >> authorName;\n    cout << \"enter the no of pages:\";\n    cin >> noOfPages;\n  }\n  void printBookDetails()\n  {\n    cout << \"Book name is \" << bookName << \", author of the book is \" << authorName << \", the book is \" << noOfPages << \" pages long.\";\n  }\n};\n\nint main()\n{\n  Book b1;\n  b1.enterBookDetails();\n  b1.printBookDetails();\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 2,
+    "name": "personal details class",
+    "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass PersonalDetails\n{\nprivate:\n  string name;\n  string address;\n  int age;\n  float salary;\n\npublic:\n  void setData()\n  {\n    cout << \"enter your name: \";\n    cin >> name;\n    cout << \"enter your address: \";\n    cin >> address;\n    cout << \"enter age: \";\n    cin >> age;\n    cout << \"enter salary: \";\n    cin >> salary;\n  }\n  void displayData()\n  {\n    cout << \"your name is \" << name << \", your address is \" << address << \", your age is \" << age << \", your salary is \" << salary << endl;\n  }\n};\n\nint main()\n{\n  PersonalDetails p1;\n  p1.setData();\n  p1.displayData();\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 3,
+    "name": "find area of triangle, rectangle and circle using function overloading",
+    "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass shape\n{\npublic:\n  float area(float base, float height)\n  {\n    return base * height * 0.5;\n  }\n  float area(float radius)\n  {\n    return M_PI * radius * radius;\n  }\n  int area(int length, int width)\n  {\n    return length * width;\n  }\n};\n\nint main()\n{\n  int length = 5, width = 2;\n  float base = 4, height = 7, radius = 3;\n\n  shape e;\n\n  cout << \"area of the rectangle \" << e.area(length, width) << endl;\n  cout << \"area of the triangle \" << e.area(base, height) << endl;\n  cout << \"area of the circle \" << e.area(radius) << endl;\n\n  return 0;\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 4,
+    "name": "calculate power",
+    "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass powwer\n{\npublic:\n  double power(double m, int n = 2)\n  {\n    if (n == 0)\n      return 1;\n    else if (n == 1)\n      return m;\n    double result = m;\n    for (int i = 1; i < n; i++)\n    {\n      result *= m;\n    }\n    return result;\n  }\n};\n\nint main()\n{\n  powwer num;\n  cout << num.power(5, 4) << endl;\n  cout << num.power(5) << endl;\n  return 0;\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 5,
+    "name": "create TIME class and add two time objects",
+    "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass TIME\n{\nprivate:\n  int hours, minutes, seconds;\n\npublic:\n  TIME()\n  {\n    hours = 0;\n    minutes = 0;\n    seconds = 0;\n  }\n  TIME(int h, int m, int s)\n  {\n    hours = h;\n    minutes = m;\n    seconds = s;\n  }\n  void display()\n  {\n    cout << hours << \":\" << minutes << \":\" << seconds << endl;\n  }\n  TIME add(TIME t1, TIME t2)\n  {\n    TIME t3;\n    t3.seconds = t1.seconds + t2.seconds;\n    t3.minutes = t1.minutes + t2.minutes + (t3.seconds / 60);\n    t3.seconds = t3.seconds % 60;\n    t3.hours = t1.hours + t2.hours + (t3.minutes / 60);\n    t3.minutes = t3.minutes % 60;\n    return t3;\n  }\n};\n\nint main()\n{\n  TIME t1(1, 30, 00), t2(2, 45, 45), t3;\n  t3 = t3.add(t1, t2);\n  t3.display();\n  return 0;\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 6,
+    "name": "matrix multiplication",
+    "code": "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\nclass matrix\r\n{\r\nprivate:\r\n  int data[10][10];\r\n  int row, col;\r\n\r\npublic:\r\n  matrix(int r, int c)\r\n  {\r\n    row = r;\r\n    col = c;\r\n  }\r\n  void setData(int i, int j, int val)\r\n  {\r\n    data[i][j] = val;\r\n  }\r\n  int getData(int i, int j)\r\n  {\r\n    return data[i][j];\r\n  }\r\n  int getRow()\r\n  {\r\n    return row;\r\n  }\r\n  int getCol()\r\n  {\r\n    return col;\r\n  }\r\n\r\n  matrix operator*(matrix m)\r\n  {\r\n    matrix result(row, m.getCol());\r\n    for (int i = 0; i < row; i++)\r\n    {\r\n      for (int j = 0; j < m.getCol(); j++)\r\n      {\r\n        int sum = 0;\r\n        for (int k = 0; k < col; k++)\r\n        {\r\n          sum += data[i][k] * m.getData(k, j);\r\n        }\r\n        result.setData(i, j, sum);\r\n      }\r\n    }\r\n    return result;\r\n  }\r\n\r\n  void display()\r\n  {\r\n    for (int i = 0; i < row; i++)\r\n    {\r\n      for (int j = 0; j < col; j++)\r\n      {\r\n        cout << data[i][j] << \" \";\r\n      }\r\n      cout << endl;\r\n    }\r\n  }\r\n};\r\n\r\nint main()\r\n{\r\n  matrix m1(2, 2);\r\n  m1.setData(0, 0, 1);\r\n  m1.setData(0, 1, 0);\r\n  m1.setData(1, 0, 0);\r\n  m1.setData(1, 1, 1);\r\n\r\n  matrix m2(2, 2);\r\n  m2.setData(0, 0, 1);\r\n  m2.setData(0, 1, 0);\r\n  m2.setData(1, 0, 0);\r\n  m2.setData(1, 1, 1);\r\n\r\n  matrix m3 = m1 * m2;\r\n  m3.display();\r\n  return 0;\r\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 7,
+    "name": "create class student and display those with more then 70%",
+    "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass student\n{\nprivate:\n  string name;\n  string branch;\n  int rollNo;\n  int age;\n  char sex;\n  int marks[5];\n\npublic:\n  void getData()\n  {\n    cout << \"enter the name of student: \";\n    cin >> name;\n    cout << \"enter the branch: \";\n    cin >> branch;\n    cout << \"enter roll No: \";\n    cin >> rollNo;\n    cout << \"enter age: \";\n    cin >> age;\n    cout << \"enter sex: \";\n    cin >> sex;\n    for (int i = 0; i < 5; i++)\n    {\n      cout << \"enter marks in subject \" << i + 1 << \": \";\n      cin >> marks[i];\n    }\n  }\n  float calcPercent()\n  {\n    float total = 0;\n    for (int i = 0; i < 5; i++)\n    {\n      total += marks[i];\n    }\n    return (total / 5);\n  }\n  void display()\n  {\n    float percentage = calcPercent();\n    if (percentage >= 70)\n    {\n      cout << \"Name: \" << name << endl\n           << \"percentage: \" << percentage << endl;\n    }\n  }\n};\n\nint main()\n{\n  int n;\n  cout << \"enter the number of students: \";\n  cin >> n;\n  student s[n];\n\n  for (int i = 0; i < n; i++)\n  {\n    cout << \"enter the details of student\" << i + 1 << \":\" << endl;\n    s[i].getData();\n  }\n  cout << \"details of students who got more than 70%:\" << endl;\n  for (int i = 0; i < n; i++)\n  {\n    s[i].display();\n  }\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 8,
+    "name": "access member of class using pointer",
+    "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass student\n{\npublic:\n  string name;\n  int age;\n\n  void getData()\n  {\n    cout << \"enter the student name: \";\n    cin >> name;\n    cout << \"enter age: \";\n    cin >> age;\n  }\n};\n\nint main()\n{\n  student one;\n  one.getData();\n  student *ptr = &one;\n  cout << \"student name: \" << ptr->name << endl;\n  cout << \"student age: \" << ptr->age << endl;\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 9,
+    "name": "find factorial using constructor",
+    "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass fact\n{\nprivate:\n  int num, facto;\n\npublic:\n  fact(int n)\n  {\n    num = n;\n    facto = 1;\n    for (int i = 1; i <= n; i++)\n    {\n      facto *= i;\n    }\n  }\n  void display()\n  {\n    cout << \"factorial of \" << num << \" is \" << facto << endl;\n  }\n};\n\nint main()\n{\n  int num;\n  cin >> num;\n  fact f(num);\n  f.display();\n  return 0;\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 10,
+    "name": "addition of two complex num using operator overloading",
+    "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass cmplx\n{\nprivate:\n  int real, imag;\n\npublic:\n  cmplx()\n  {\n    real = imag = 0;\n  }\n  cmplx(int num)\n  {\n    real = imag = num;\n  }\n  cmplx(int num1, int num2)\n  {\n    real = num1;\n    imag = num2;\n  }\n\n  cmplx operator+(cmplx const &obj)\n  {\n    cmplx c3;\n    c3.real = real + obj.real;\n    c3.imag = imag + obj.imag;\n    return c3;\n  }\n  void display()\n  {\n    cout << real << \"+ i\" << imag << endl;\n  }\n};\n\nint main()\n{\n  cmplx c1(2, 5), c2(5, 7), c3;\n  c3 = c1 + c2;\n  c3.display();\n  return 0;\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 11,
+    "name": "fibonacci series using copy constructor",
+    "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass fib\n{\nprivate:\n  int f0, f1, f2;\n\npublic:\n  fib()\n  {\n    f0 = 0;\n    f1 = 1;\n    f2 = f0 + f1;\n  }\n  fib(fib &t)\n  {\n    f0 = t.f0;\n    f1 = t.f1;\n    f2 = t.f0 + t.f1;\n  }\n  void generate(int n, fib f);\n};\n\nvoid fib::generate(int n, fib f)\n{\n  cout << f0 << \" \" << f1 << \" \";\n  for (int i = 0; i < n - 2; i++)\n  {\n    fib res = f;\n    cout << res.f2 << \" \";\n    f.f0 = res.f1;\n    f.f1 = res.f2;\n  }\n}\n\nint main()\n{\n  fib f;\n  int x;\n  cin >> x;\n  f.generate(x, f);\n  return 0;\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 12,
+    "name": "class which keeps track of number of objects and provides updated count",
+    "code": "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\nclass counter\r\n{\r\nprivate:\r\n  static int count;\r\n\r\npublic:\r\n  counter() { count++; }\r\n  ~counter()\r\n  {\r\n    count--;\r\n    cout << \"destruct\" << endl;\r\n  }\r\n  static int getCount() { return count; }\r\n};\r\n\r\nint counter::count = 0;\r\n\r\nint main()\r\n{\r\n  counter c1;\r\n  cout << \"number of counter objects after creating c1: \" << counter::getCount() << endl;\r\n  {\r\n    counter c2;\r\n    cout << \"number of counter objects after creating c2: \" << counter::getCount() << endl;\r\n  }\r\n  cout << \"number of counter objects: \" << counter::getCount() << endl;\r\n  return 0;\r\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 13,
+    "name": "demonstrate use of this pointer",
+    "code": "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\nclass simp\r\n{\r\nprivate:\r\n  int num;\r\n\r\npublic:\r\n  void setNum(int n)\r\n  {\r\n    this->num = n;\r\n  }\r\n  void print()\r\n  {\r\n    cout << \"the num is \" << this->num << endl;\r\n  }\r\n};\r\n\r\nint main()\r\n{\r\n  simp obj;\r\n  obj.setNum(5);\r\n  obj.print();\r\n  return 0;\r\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 14,
+    "name": "largest num using friend function",
+    "code": "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\nclass nums\r\n{\r\nprivate:\r\n  int a, b, c;\r\n\r\npublic:\r\n  void getData()\r\n  {\r\n    cout << \"enter the numbers: \";\r\n    cin >> a >> b >> c;\r\n  }\r\n  friend int largestNum(nums n);\r\n};\r\n\r\nint largestNum(nums n)\r\n{\r\n  int largest;\r\n  if (n.a > n.b && n.a > n.c)\r\n    largest = n.a;\r\n  else if (n.b > n.c)\r\n    largest = n.b;\r\n  else\r\n    largest = n.c;\r\n  return largest;\r\n}\r\n\r\nint main()\r\n{\r\n  nums n;\r\n  n.getData();\r\n  cout << largestNum(n) << endl;\r\n  return 0;\r\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 15,
+    "name": "friend function with inline assignment",
+    "code": "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\nclass A\r\n{\r\n  int x;\r\n\r\npublic:\r\n  A(int a = 0)\r\n  {\r\n    x = a;\r\n  }\r\n  friend void set(A &obj, int a) // Declaration and definition of friend function\r\n  {\r\n    obj.x = a;\r\n  }\r\n  void display()\r\n  {\r\n    cout << \"value of x is: \" << x << endl;\r\n  }\r\n};\r\n\r\nint main()\r\n{\r\n  A obj;\r\n  obj.display();\r\n  set(obj, 5);\r\n  obj.display();\r\n  return 0;\r\n}\r\n",
+    "lang": "cpp"
+  },
+  {
+    "id": 16,
+    "name": "Greatest number in two different classes using friend function",
+    "code": "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\nclass B;\r\nclass A\r\n{\r\n  int num1;\r\n\r\npublic:\r\n  A(int n1)\r\n  {\r\n    num1 = n1;\r\n  }\r\n  friend int findGreatest(A obj1, B obj2);\r\n};\r\n\r\nclass B\r\n{\r\n  int num2;\r\n\r\npublic:\r\n  B(int n2)\r\n  {\r\n    num2 = n2;\r\n  }\r\n  friend int findGreatest(A obj1, B obj2);\r\n};\r\n\r\nint findGreatest(A obj1, B obj2)\r\n{\r\n  if (obj1.num1 > obj2.num2)\r\n    return obj1.num1;\r\n  else\r\n    return obj2.num2;\r\n}\r\n\r\nint main()\r\n{\r\n  A obj1(5);\r\n  B obj2(10);\r\n  int greatest = findGreatest(obj1, obj2);\r\n  cout << \"the greatest no. is: \" << greatest << endl;\r\n  return 0;\r\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 17,
+    "name": "display numbers and their sum using friend function",
+    "code": "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\nclass A\r\n{\r\nprivate:\r\n  int a = 5, b = 10;\r\n\r\npublic:\r\n  friend class B;\r\n};\r\n\r\nclass B\r\n{\r\npublic:\r\n  void sum(A obj)\r\n  {\r\n    cout << \"sum: \" << obj.a + obj.b << endl;\r\n    cout << \"the numbers are \" << obj.a << \" & \" << obj.b << endl;\r\n  }\r\n};\r\n\r\nint main()\r\n{\r\n  A a;\r\n  B b;\r\n  b.sum(a);\r\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 18,
+    "name": "inheritance from basic info to physical fit class",
+    "code": "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\nclass basicInfo\r\n{\r\npublic:\r\n  string name;\r\n  int age;\r\n  char sex;\r\n\r\n  void getData()\r\n  {\r\n    cin >> name >> age >> sex;\r\n  }\r\n  void showData()\r\n  {\r\n    cout << name << \" , \" << age << \" , \" << sex;\r\n  }\r\n};\r\n\r\nclass physicalFIt : basicInfo\r\n{\r\npublic:\r\n  int height, weight;\r\n  void getData()\r\n  {\r\n    basicInfo::getData();\r\n    cin >> height >> weight;\r\n  }\r\n  void showData()\r\n  {\r\n    basicInfo::showData();\r\n    cout << \" , \" << height << \" , \" << weight << endl;\r\n  }\r\n};\r\n\r\nint main()\r\n{\r\n  physicalFIt p1;\r\n  p1.getData();\r\n  p1.showData();\r\n  return 0;\r\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 19,
+    "name": "implement book class using two other classes & display using array of objects",
+    "code": "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\nclass first\r\n{\r\nprivate:\r\n  string bookName;\r\n  int bookNo;\r\n\r\npublic:\r\n  void getData()\r\n  {\r\n    cin >> bookName >> bookNo;\r\n  }\r\n  void showData()\r\n  {\r\n    cout << \"book name is \" << bookName << \" and number is \" << bookNo << endl;\r\n  }\r\n};\r\n\r\nclass second\r\n{\r\nprivate:\r\n  string author;\r\n  string publisher;\r\n\r\npublic:\r\n  void getData()\r\n  {\r\n    cin >> author >> publisher;\r\n  }\r\n  void showData()\r\n  {\r\n    cout << \" author of the book is \" << author << \" and it was published by \" << publisher << endl;\r\n  }\r\n};\r\n\r\nclass third : first, second\r\n{\r\nprivate:\r\n  int noOfPages, yearOfPublication;\r\n\r\npublic:\r\n  void getData()\r\n  {\r\n    first::getData();\r\n    second::getData();\r\n    cin >> noOfPages >> yearOfPublication;\r\n  }\r\n  void showData()\r\n  {\r\n    first::showData();\r\n    second::showData();\r\n    cout << \" book contains \" << noOfPages << \" pages & it was published in \" << yearOfPublication << endl;\r\n  }\r\n};\r\n\r\nint main()\r\n{\r\n  int n;\r\n  cout << \"enter the number of books: \";\r\n  cin >> n;\r\n  third book[n];\r\n  for (int i = 0; i < n; i++)\r\n  {\r\n    book[i].getData();\r\n    book[i].showData();\r\n  }\r\n  return 0;\r\n}",
+    "lang": "cpp"
+  },
+  {
+    "id": 20,
+    "name": "student exam result using inheritance",
+    "code": "// Design three classes STUDENT ,EXAM and RESULT. The STUDENT class has datamembers such as rollno, name. create a class EXAM by inheriting the STUDENT class. The EXAM class adds datamembers representing the marks scored in six subjects. Derive the RESULT from the EXAM class and has its own datamembers such as totalmarks.Write a program to model this relationship.\n\n#include <iostream>\n#include <string>\n\nusing namespace std;\n\nclass STUDENT {\npublic:\n  int rollno;\n  string name;\n};\n\nclass EXAM : public STUDENT {\npublic:\n  int marks[6];\n};\n\nclass RESULT : public EXAM {\npublic:\n  int totalmarks;\n};\n\nint main() {\n  RESULT student_result;\n\n  // set student data\n  student_result.rollno = 123;\n  student_result.name = \"John Doe\";\n\n  // set exam marks\n  for (int i = 0; i < 6; i++) {\n    cout << \"Enter marks for subject \" << i + 1 << \": \";\n    cin >> student_result.marks[i];\n  }\n\n  // calculate total marks\n  student_result.totalmarks = 0;\n  for (int i = 0; i < 6; i++) {\n    student_result.totalmarks += student_result.marks[i];\n  }\n\n  // output results\n  cout << \"Roll No: \" << student_result.rollno << endl;\n  cout << \"Name: \" << student_result.name << endl;\n  cout << \"Total Marks: \" << student_result.totalmarks << endl;\n\n  return 0;\n}\n",
+    "lang": "cpp"
+  },
+  {
+    "id": 21,
+    "name": "polygon ellipse etc. from abstract base class figure",
+    "code": "#include <cmath>\n#include <iostream>\n#include <vector>\n\nclass FIGURE {\npublic:\n  virtual double area() = 0;\n  virtual double perimeter() = 0;\n  virtual ~FIGURE() {}\n};\n\nclass CLOSE : public FIGURE {\nprotected:\n  std::vector<std::pair<double, double>> vertices;\n\npublic:\n  virtual double area() = 0;\n  virtual double perimeter() = 0;\n  virtual ~CLOSE() {}\n};\n\nclass OPEN : public FIGURE {\npublic:\n  virtual double length() = 0;\n  virtual ~OPEN() {}\n};\n\nclass POLYGON : public CLOSE {\npublic:\n  POLYGON(std::vector<std::pair<double, double>> v) { vertices = v; }\n  virtual double area() {\n    int n = vertices.size();\n    double a = 0.0;\n    for (int i = 0; i < n; i++) {\n      a += vertices[i].first * vertices[(i + 1) % n].second -\n           vertices[(i + 1) % n].first * vertices[i].second;\n    }\n    return std::abs(a) / 2.0;\n  }\n  virtual double perimeter() {\n    int n = vertices.size();\n    double p = 0.0;\n    for (int i = 0; i < n; i++) {\n      p += std::hypot(vertices[(i + 1) % n].first - vertices[i].first,\n                      vertices[(i + 1) % n].second - vertices[i].second);\n    }\n    return p;\n  }\n  virtual ~POLYGON() {}\n};\n\nclass ELLIPSE : public CLOSE {\nprivate:\n  double a, b;\n\npublic:\n  ELLIPSE(double ma, double mb) : a(ma), b(mb) {}\n  virtual double area() { return M_PI * a * b; }\n  virtual double perimeter() {\n    return 2.0 * M_PI * std::sqrt((a * a + b * b) / 2.0);\n  }\n  virtual ~ELLIPSE() {}\n};\n\nclass LINE : public OPEN {\nprivate:\n  std::pair<double, double> start, end;\n\npublic:\n  LINE(std::pair<double, double> s, std::pair<double, double> e)\n      : start(s), end(e) {}\n  virtual double length() {\n    return std::hypot(end.first - start.first, end.second - start.second);\n  }\n  virtual ~LINE() {}\n};\n\nclass POLYLINE : public OPEN {\nprivate:\n  std::vector<std::pair<double, double>> vertices;\n\npublic:\n  POLYLINE(std::vector<std::pair<double, double>> v) { vertices = v; }\n  virtual double length() {\n    int n = vertices.size();\n    double l = 0.0;\n    for (int i = 0; i < n - 1; i++) {\n      l += std::hypot(vertices[i + 1].first - vertices[i].first,\n                      vertices[i + 1].second - vertices[i].second);\n    }\n    return l;\n  }\n  virtual ~POLYLINE() {}\n};\n\nint main() {\n  std::vector<std::pair<double, double>> vertices{\n      {0, 0}, {0, 1}, {1, 1}, {1, 0}};\n  POLYGON square(vertices);\n  std::cout << \"Square area: \" << square.area() << std::endl;\n  std::cout << \"Square perimeter: \" << square.perimeter() << std::endl;\n\n  ELLIPSE circle(1, 1);\n  std::cout << \"Circle area: \" << circle.area() << std::endl;\n  std::cout << \"Circle perimeter: \" << circle.perimeter() << std::endl;\n\n  LINE diagonal({0, 0}, {1, 1});\n  std::cout << \"Line length: \" << diagonal.length() << std::endl;\n\n  std::vector<std::pair<double, double>> polyline{\n      {0, 0}, {0, 1}, {1, 1}, {2, 1}};\n  POLYLINE zigzag(polyline);\n  std::cout << \"Polyline length: \" << zigzag.length() << std::endl;\n\n  return 0;\n}\n",
+    "lang": "cpp"
+  },
+  {
+    "id": 22,
+    "name": "find area of triangle, rectangle using a base class for both",
+    "code": "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\nclass shape\r\n{\r\nprotected:\r\n  double base, height;\r\n\r\npublic:\r\n  void getData()\r\n  {\r\n    cout << \"enter the base: \";\r\n    cin >> base;\r\n    cout << \"enter the height: \";\r\n    cin >> height;\r\n  }\r\n  virtual void display()\r\n  {\r\n    double area = 0.5 * height * base;\r\n    cout << \"Area of the shape is \" << area << endl;\r\n  }\r\n};\r\n\r\nclass triangle : public shape\r\n{\r\npublic:\r\n  void display() override\r\n  {\r\n    double area = 0.5 * base * height;\r\n    cout << \"Area of the triangle is \" << area << endl;\r\n  }\r\n};\r\n\r\nclass rectangle : public shape\r\n{\r\npublic:\r\n  void display() override\r\n  {\r\n    double area = base * height;\r\n    cout << \"Area of the rectangle is \" << area << endl;\r\n  }\r\n};\r\n\r\nint main()\r\n{\r\n  char choice;\r\n  while (true)\r\n  {\r\n    cout << \"enter 'T' for triangle, 'R' for rectangle, or 'Q' to quit: \";\r\n    cin >> choice;\r\n    if (choice == 'T' || choice == 't')\r\n    {\r\n      triangle t;\r\n      t.getData();\r\n      t.display();\r\n    }\r\n    else if (choice == 'R' || choice == 'r')\r\n    {\r\n      rectangle r;\r\n      r.getData();\r\n      r.display();\r\n    }\r\n    else if (choice == 'Q' || choice == 'q')\r\n    {\r\n      cout << \"bye\" << endl;\r\n      break;\r\n    }\r\n    else\r\n    {\r\n      cout << \"invalid choice try again!\" << endl;\r\n    }\r\n  }\r\n  return 0;\r\n}",
+    "lang": "cpp"
+  }
+]
